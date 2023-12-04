@@ -60,6 +60,21 @@ const updateTaskService = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+const updateStatusTaskService = async (req, res) => {
+  const { status } = req.query;
+  const id = req.params.id;
+  try {
+    const task = await TaskModel.findOneAndUpdate(
+      { _id: id },
+      { status }
+    );
+    if (!task) return res.status(404).json({ message: "Task not found" });
+    return res.status(200).json({ message: "Task updated successfully" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+}
 
 const deleteTaskService = async (req, res) => {
   const id = req.params.id;
@@ -80,4 +95,5 @@ module.exports = {
   createTaskService,
   updateTaskService,
   deleteTaskService,
+  updateStatusTaskService
 };

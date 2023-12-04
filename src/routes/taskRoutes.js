@@ -5,6 +5,7 @@ const {
   createTaskController,
   updateTaskController,
   deleteTaskController,
+  updateStatusTaskController,
 } = require("../controller/taskController");
 const validateToken = require("../utils/validateToken");
 const validator = require("../utils/validator");
@@ -30,6 +31,7 @@ taskRouter.put(
     validator,
     updateTaskController
   );
+  taskRouter.put('/:id/status', validateToken, updateStatusTaskController)
   taskRouter.delete(
     "/:id",
     validateToken,
