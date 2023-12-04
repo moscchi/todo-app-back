@@ -1,4 +1,4 @@
-const { getTaskService, getTaskByUsernameService, createTaskService, updateTaskService, deleteTaskService } = require("../services/taskService")
+const { getTaskService, getTaskByUsernameService, createTaskService, updateTaskService, deleteTaskService, updateStatusTaskService } = require("../services/taskService")
 
 const getTaskController = async (_req, res) => {
     return await getTaskService(res)
@@ -13,7 +13,11 @@ const createTaskController = async (req, res) => {
 const updateTaskController = async (req, res) => {
     return await updateTaskService(req, res)
 }
+const updateStatusTaskController = async (req, res) => {
+    return await updateStatusTaskService(req, res)
+
+}
 const deleteTaskController = async (req, res) => {
     return await deleteTaskService(req, res)
 }
-module.exports = { getTaskController, getTaskByUsernameController, createTaskController, updateTaskController, deleteTaskController, deleteTaskService }
+module.exports = { getTaskController, getTaskByUsernameController, createTaskController, updateTaskController, deleteTaskController, deleteTaskService, updateStatusTaskController }
